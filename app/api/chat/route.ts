@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     console.log('Received messages:', messages);
 
     const result = streamText({
-      model: openai('gpt-4o-mini'), 
+      model: openai('gpt-4o'), 
       messages,
       system: `You are a helpful assistant with access to a knowledge base. Follow these rules strictly:
 

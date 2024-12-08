@@ -3,9 +3,11 @@ import { env } from "@/lib/env.mjs";
 
 export default {
   schema: "./lib/db/schema",
-  dialect: "postgresql",
   out: "./lib/db/migrations",
+  dialect: "postgresql",
   dbCredentials: {
     url: env.DATABASE_URL,
-  }
+  },
+  strict: true,
+  verbose: true
 } satisfies Config;
