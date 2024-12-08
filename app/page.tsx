@@ -22,17 +22,10 @@ export default function Chat() {
     maxSteps: 3,
     initialMessages: [
       {
-        id: 'initial-message',
+        id: '1',
+        content: "Hello! I'm your elder care compliance assistant. I can help you understand California's elder care regulations, specifically:\n\n1. Title 22 Residential Care Facilities for the Elderly Regulations\n2. Continuing Care Contract Statutes (Health and Safety Code, Section 1770 et seq.)\n\nHow can I assist you today?",
         role: 'assistant',
-        content: `Welcome! I'm your elder care compliance assistant. I have knowledge about continuing care contracts and regulations. You can ask me about:
-
-Continuing Care Contracts:
-- Contract requirements and regulations
-- Resident rights and protections
-- Facility obligations and responsibilities
-
-Feel free to ask me anything about elder care compliance and I'll help you find the relevant information!`
-      }
+      },
     ],
     onError: (error) => {
       console.error('Chat error:', error);
