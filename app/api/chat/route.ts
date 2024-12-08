@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { findRelevantContent } from '@/lib/ai/embedding';
 
 // Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     console.log('Received messages:', messages);
 
     const result = streamText({
-      model: openai('gpt-3.5-turbo'), // Let's try with gpt-3.5-turbo first
+      model: openai('gpt-4o-mini'), 
       messages,
       system: `You are a helpful assistant. Check your knowledge base before answering any questions.
       Only respond to questions using information from tool calls.
