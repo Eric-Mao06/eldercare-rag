@@ -4,7 +4,6 @@ import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { findRelevantContent } from '@/lib/ai/embedding';
 
-// Allow streaming responses up to 30 seconds
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
@@ -27,12 +26,14 @@ export async function POST(req: Request) {
          - ALWAYS use addResource to save it immediately
          - Add proper punctuation and preserve the original case
          - If the information relates to the user (like preferences or facts about them), prefix it with "User: "
+      4. Use simple plain text without any special formatting or markdown, especially not bolding
+      5. When given a scenario, use existing knowledge to reason and provide a answer
       
       Remember: 
       - Never make up information or combine facts that weren't explicitly stated
       - If multiple pieces of information seem contradictory, mention the contradiction
       - Always preserve the exact wording from the knowledge base when quoting facts
-      - Use simple plain text without any special formatting or markdown`,
+      `,
       tools: {
         addResource: tool({
           description: `add a resource to your knowledge base.

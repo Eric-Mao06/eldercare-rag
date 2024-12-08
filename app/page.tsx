@@ -2,6 +2,20 @@
 
 import { useChat } from 'ai/react';
 
+const TextFormatter = ({ text }: { text: string }) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+};
+
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, error } = useChat({
     maxSteps: 3,
@@ -40,7 +54,7 @@ Feel free to ask me anything about elder care compliance and I'll help you find 
               <div className="font-bold">{m.role}</div>
               <div>
                 {m.content?.length > 0 ? (
-                  m.content
+                  <TextFormatter text={m.content} />
                 ) : (
                   <span className="italic font-light">
                     {'calling tool: ' + m?.toolInvocations?.[0]?.toolName}
