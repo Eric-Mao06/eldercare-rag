@@ -13,9 +13,14 @@ async function wipeDatabase() {
     await db.delete(resources);
     
     console.log('Database wiped successfully!');
+    process.exit(0);  // Exit successfully
   } catch (error) {
     console.error('Error wiping database:', error);
+    process.exit(1);  // Exit with error
   }
 }
 
-wipeDatabase().catch(console.error);
+wipeDatabase().catch(error => {
+  console.error('Unhandled error:', error);
+  process.exit(1);
+});
