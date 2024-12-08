@@ -31,7 +31,8 @@ export async function POST(req: Request) {
       Remember: 
       - Never make up information or combine facts that weren't explicitly stated
       - If multiple pieces of information seem contradictory, mention the contradiction
-      - Always preserve the exact wording from the knowledge base when quoting facts`,
+      - Always preserve the exact wording from the knowledge base when quoting facts
+      - Use simple plain text without any special formatting or markdown`,
       tools: {
         addResource: tool({
           description: `add a resource to your knowledge base.

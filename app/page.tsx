@@ -5,6 +5,20 @@ import { useChat } from 'ai/react';
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, error } = useChat({
     maxSteps: 3,
+    initialMessages: [
+      {
+        id: 'initial-message',
+        role: 'assistant',
+        content: `Welcome! I'm your elder care compliance assistant. I have knowledge about continuing care contracts and regulations. You can ask me about:
+
+Continuing Care Contracts:
+- Contract requirements and regulations
+- Resident rights and protections
+- Facility obligations and responsibilities
+
+Feel free to ask me anything about elder care compliance and I'll help you find the relevant information!`
+      }
+    ],
     onError: (error) => {
       console.error('Chat error:', error);
     },
@@ -24,7 +38,7 @@ export default function Chat() {
           <div key={m.id} className="whitespace-pre-wrap">
             <div>
               <div className="font-bold">{m.role}</div>
-              <p>
+              <div>
                 {m.content?.length > 0 ? (
                   m.content
                 ) : (
@@ -32,7 +46,7 @@ export default function Chat() {
                     {'calling tool: ' + m?.toolInvocations?.[0]?.toolName}
                   </span>
                 )}
-              </p>
+              </div>
             </div>
           </div>
         ))}
